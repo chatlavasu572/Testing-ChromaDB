@@ -83,6 +83,34 @@ docker pull chromadb/chroma
 ```
 docker run -d -p 8000:8000 chromadb/chroma
 ```
+Now run the commands in google colab 
+```
+!pip install chromadb
+```
+```
+import chromadb
+chroma_client = chromadb.HttpClient(host='vm public ip', port=8000)
+```
+```
+collection = chroma_client.get_or_create_collection(name="test")
+```
+```
+collection = chroma_client.get_collection(name="test")
+```
+
+```
+collection.add(
+    documents=["This is a document about cat", "This is a document about car"],
+    metadatas=[{"category": "animal"}, {"category": "vehicle"}],
+    ids=["id1", "id2"]
+)
+```
+```
+collection.query(
+    query_texts=["bike"],
+    n_results=1
+)
+```
 
 
 
